@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/vite/', // ⚡ 关键：打包资源路径加 /vite/ 前缀
+  base: '/', 
   plugins: [
     vue(),
     vueDevTools(),
