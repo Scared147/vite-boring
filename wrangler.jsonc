@@ -1,3 +1,4 @@
+// wrangler.jsonc 为了部署在Cloudflare Workers上的配置文件，无其它用途
 {
   "name": "vite-worker",
   "compatibility_date": "2026-02-07",
