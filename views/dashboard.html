@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>仪表盘 - Node Boring</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">NodeBoring</a>
+  <ul>
+    <li><a href="/">首页</a></li>
+    <li><a href="/about">关于</a></li>
+    <li><a href="/dashboard" class="active">仪表盘</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h2 class="section-title">仪表盘</h2>
+  <p class="section-subtitle">系统概览 &mdash; 静态示例数据</p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div>
+        <div class="value">2,847</div>
+        <div class="label">今日访问量</div>
+        <div class="change up">↑ 12.5%</div>
+      </div>
+      <div class="icon">📈</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="value">138</div>
+        <div class="label">新增用户</div>
+        <div class="change up">↑ 8.2%</div>
+      </div>
+      <div class="icon">👤</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="value">¥ 9,420</div>
+        <div class="label">今日收入</div>
+        <div class="change down">↓ 3.1%</div>
+      </div>
+      <div class="icon">💰</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="value">99.9%</div>
+        <div class="label">服务可用率</div>
+        <div class="change up">↑ 0.1%</div>
+      </div>
+      <div class="icon">🟢</div>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="panel">
+      <h3>本周访问趋势</h3>
+      <div class="bar-chart">
+        <div class="bar-wrap">
+          <div class="bar" style="height:55%"></div>
+          <div class="bar-label">周一</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:72%"></div>
+          <div class="bar-label">周二</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:60%"></div>
+          <div class="bar-label">周三</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:85%"></div>
+          <div class="bar-label">周四</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:95%"></div>
+          <div class="bar-label">周五</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar-label">周六</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar" style="height:30%"></div>
+          <div class="bar-label">周日</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>最近动态</h3>
+      <ul class="activity-list">
+        <li class="activity-item">
+          <span class="activity-dot green"></span>
+          <span>新用户注册</span>
+          <span class="activity-time">2 分钟前</span>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot blue"></span>
+          <span>订单 #1042 完成</span>
+          <span class="activity-time">15 分钟前</span>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot yellow"></span>
+          <span>服务器负载警告</span>
+          <span class="activity-time">32 分钟前</span>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot red"></span>
+          <span>支付失败 #1039</span>
+          <span class="activity-time">1 小时前</span>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot green"></span>
+          <span>部署成功 v1.2.0</span>
+          <span class="activity-time">3 小时前</span>
+        </li>
+        <li class="activity-item">
+          <span class="activity-dot blue"></span>
+          <span>数据库备份完成</span>
+          <span class="activity-time">6 小时前</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 NodeBoring &mdash; 用 Node.js 构建
+</footer>
+
+
+<script src="/js/vendor/jquery/jquery.min.js"></script>
+<script src="/js/vendor/axios/axios.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  $(function () {
+    // 示例：点击统计卡片显示详情
+    $('.stat-card').on('click', function () {
+      const label = $(this).find('.label').text()
+      const value = $(this).find('.value').text()
+      Toast.show(`${label}：${value}`, 'info')
+    })
+
+    // 示例：点击柱状图 bar 显示数值
+    $('.bar').on('click', function () {
+      const pct = parseInt($(this).css('height'))
+      Toast.show(`本日访问量约为峰值的 ${$(this).css('height')}`, 'success', 2000)
+    })
+
+    // 示例：页面加载时模拟一次数据刷新
+    Loading.show('刷新数据...')
+    setTimeout(() => {
+      Loading.hide()
+      Toast.show('数据已更新 ' + formatDate(new Date(), 'full'), 'success')
+    }, 1200)
+  })
+</script>
+</body>
+</html>

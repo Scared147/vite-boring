@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 - Node Boring</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">NodeBoring</a>
+  <ul>
+    <li><a href="/">首页</a></li>
+    <li><a href="/about" class="active">关于</a></li>
+    <li><a href="/dashboard">仪表盘</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>关于这个项目</h2>
+      <p>
+        Node Boring 是一个用于学习和快速原型开发的 Node.js 基础项目模板。
+        它采用 Express 框架，将路由、静态文件服务与 HTML 页面分离，
+        提供一个干净、可扩展的起点。
+      </p>
+      <p>
+        无论你是刚开始学习 Node.js 后端开发，还是需要一个快速验证想法的脚手架，
+        这个项目都能帮助你节省初始搭建的时间。
+      </p>
+      <div class="tag-list">
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">REST API Ready</span>
+        <span class="tag">静态文件服务</span>
+      </div>
+    </div>
+
+    <div class="about-visual">
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">示例页面</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1</div>
+        <div class="stat-label">核心依赖（Express）</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">&lt;5 min</div>
+        <div class="stat-label">从零到运行</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <h2 class="section-title">快速开始</h2>
+    <p class="section-subtitle">三步启动你的应用</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">1️⃣</div>
+        <h3>安装依赖</h3>
+        <p>在项目根目录执行 <code>npm install</code> 安装 Express 等依赖。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">2️⃣</div>
+        <h3>启动服务器</h3>
+        <p>执行 <code>npm start</code> 启动服务，或使用 <code>npm run dev</code> 开启热重载。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">3️⃣</div>
+        <h3>开始开发</h3>
+        <p>在 <code>views/</code> 目录下修改页面，在 <code>server.js</code> 中添加新路由。</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 NodeBoring &mdash; 用 Node.js 构建
+</footer>
+
+
+<script src="/js/vendor/jquery/jquery.min.js"></script>
+<script src="/js/vendor/axios/axios.min.js"></script>
+<script src="/js/common.js"></script>
+<script>
+  // 示例：鼠标悬停卡片时显示提示
+  $(function () {
+    $('.card').on('mouseenter', function () {
+      const title = $(this).find('h3').text()
+      Toast.show(title, 'success', 1500)
+    })
+  })
+</script>
+</body>
+</html>
