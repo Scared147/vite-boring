@@ -1,0 +1,8 @@
+// wrangler.jsonc 为了部署在Cloudflare Workers上的配置文件，无其它用途
+{
+  "name": "node-worker",
+  "compatibility_date": "2026-02-07",
+  "assets": {
+    "directory": "./dist"
+  }
+}
