@@ -1,0 +1,75 @@
+name: Deploy node-boring to GitHub Pages
+
+on:
+  push:
+    branches: [node-boring]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout node-boring
+        uses: actions/checkout@v4
+        with:
+          ref: node-boring
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Prepare static files
+        run: |
+          mkdir -p dist/css dist/js/vendor/jquery dist/js/vendor/axios
+
+          # 复制 HTML，并将绝对路径改为相对路径
+          for file in views/*.html; do
+            filename=$(basename "$file")
+            sed \
+              -e 's|href="/css/|href="css/|g' \
+              -e 's|src="/js/|src="js/|g' \
+              -e 's|href="/about"|href="about.html"|g' \
+              -e 's|href="/dashboard"|href="dashboard.html"|g' \
+              -e 's|href="/"|href="index.html"|g' \
+              "$file" > "dist/$filename"
+          done
+
+          # 复制 CSS 和公共 JS
+          cp public/css/style.css dist/css/style.css
+          cp public/js/common.js  dist/js/common.js
+
+          # 复制 vendor 库
+          cp node_modules/jquery/dist/jquery.min.js   dist/js/vendor/jquery/jquery.min.js
+          cp node_modules/axios/dist/axios.min.js      dist/js/vendor/axios/axios.min.js
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
