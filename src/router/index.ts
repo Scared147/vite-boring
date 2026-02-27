@@ -21,6 +21,11 @@ const router = createRouter({
       name: 'diary',
       component: () => import('../views/BookMark/DiaryView.vue'),
     },
+    {
+      path: '/bookmark/ui-showcase',
+      name: 'ui-showcase',
+      component: () => import('../views/BookMark/UIShowcaseView.vue'),
+    },
 
   ],
 })
