@@ -35,7 +35,7 @@ const startExploring = () => {
         <div class="title-underline"></div>
       </div>
 
-      <p class="subtitle">一切从这里开始</p>
+      <p class="subtitle">一切从这里开始-</p>
 
       <button class="explore-button" @click="startExploring">
         <span class="button-bg"></span>
